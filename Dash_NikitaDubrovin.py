@@ -7,7 +7,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapmi
 app = Dash(__name__)
 
 app.layout = html.Div([
-    html.H1(children='Title of Dash App', style={'textAlign': 'center'}),
+    html.H1(children='dash country', style={'textAlign': 'center'}),
     dcc.Dropdown(
         options=[{'label': year, 'value': year} for year in df['year'].unique()],
         value=df['year'].max(),
