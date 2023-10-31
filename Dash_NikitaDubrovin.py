@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, callback, Output, Input, dash
+from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
 
@@ -38,7 +38,7 @@ app.layout = html.Div([
     dcc.Graph(id='continent-population-chart')
 ])
 
-@callback(
+@app.callback(
     Output('line-chart', 'figure'),
     [Input('dropdown-selection', 'value'),
      Input('y-axis-selection', 'value')]
@@ -48,7 +48,7 @@ def update_line_chart(selected_countries, y_axis):
     fig = px.line(dff, x='year', y=y_axis, color='country', title='Comparison of Countries')
     return fig
 
-@callback(
+@app.callback(
     Output('bubble-chart', 'figure'),
     [Input('dropdown-selection', 'value'),
      Input('y-axis-selection', 'value')]
@@ -58,7 +58,7 @@ def update_bubble_chart(selected_countries, y_axis):
     fig = px.scatter(dff, x='year', y=y_axis, size='pop', color='country', title='Bubble Chart')
     return fig
 
-@callback(
+@app.callback(
     Output('top-population-chart', 'figure'),
     Input('dropdown-selection', 'value')
 )
@@ -68,7 +68,7 @@ def update_top_population_chart(selected_countries):
     fig = px.bar(top_15, x='country', y='pop', title='Top 15 Countries by Population')
     return fig
 
-@callback(
+@app.callback(
     Output('continent-population-chart', 'figure'),
     Input('dropdown-selection', 'value')
 )
